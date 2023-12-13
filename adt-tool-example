@@ -1,0 +1,68 @@
+#!/bin/bash -e
+
+prog="ADT Example Tool"
+version="0.0.1"
+
+show_usage() {
+    echo "TADT Example Tool"
+    echo ""
+    echo "Usage: $PROG [options] [<check/test-function-name>]"
+    echo ""
+    echo "<check/test-function-name> must be a function name from the list of tests"
+    echo ""
+    echo "Options:"
+    echo "  -h, --help      This message"
+    echo "  -V, --version      Display version number"
+    echo "  -l, --list      List of tests"
+    echo ""
+    return
+}
+
+print_version() {
+	echo "$prog" ": " "$version"
+	exit 0;
+}
+
+test1() {
+	echo "Test 1:"
+	exit $?
+}
+
+test2() {
+	echo "Test 2:"
+	exit 1
+}
+
+test3() {
+	echo "Test 2:"
+	exit $?
+}
+
+if [ "$#" -eq 1 ]
+then
+  case "$1" in
+    -h | --help) show_usage
+    ;;
+    -l | --list) listcmd=1
+    ;;
+    -v | --version) print_version
+    ;;
+    test1) test1
+    ;;
+    test2) test2
+    ;;
+    test3) test3
+    ;;
+    *) echo "Unrecognized option: $1" ; show_usage ; exit 1
+    ;;
+  esac
+else
+	show_usage
+	exit 1
+fi
+
+if ! test -z $listcmd; then
+    echo "test1"
+	echo "test2"
+	echo "test3"
+fi

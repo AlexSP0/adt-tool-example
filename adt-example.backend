@@ -1,0 +1,22 @@
+[Alterator Entry]
+Type = Backend
+Module = executor
+Name = example_tool
+Interface = diag1
+
+[Info]
+execute = cat /usr/share/alterator/objects/adt-tool-example/adt-example.alterator
+stdout_bytes = enabled
+thread_limit = 3
+action_id = Info
+
+[Run]
+execute = /usr/lib/adt-test-tools/adt-example-tool {param}
+stdout_signal_name = diag1_stdout_signal
+stderr_signal_name = diag1_stderr_signal
+action_id = Run
+
+[List]
+execute = /usr/lib/adt-test-tools/adt-example-tool -l
+stdout_strings = enabled
+action_id = List
