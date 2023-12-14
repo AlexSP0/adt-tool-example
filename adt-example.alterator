@@ -1,0 +1,34 @@
+[Alterator Entry]
+Name=example_tool
+Name[ru_RU]=пример диагностического инструмента 
+Name[en_EN]=example tool 
+
+Description=example tool default description
+Description[ru_RU]=описание примера диагностического инструмента
+Description[en_EN]=description of example diagnostic tool
+
+Icon=system-run
+
+[test1]
+Name=test1
+Name[ru_RU]=тест1 примера диагностического инструмента
+Name[en_US]=test1 of example diagnostic tool
+Description=default description of test 1 in example diagnostic tool
+Description[ru_RU]=описание теста 1 примера диагностического инструмента
+Description[en_US]=default description of test 1 in example diagnostic tool
+
+[test2]
+Name=test2
+Name[ru_RU]=тест2 примера диагностического инструмента
+Name[en_US]=test2 of example tool
+Description=default description of test 2 in example diagnostic tool
+Description[ru_RU]=описание теста 2 примера диагностического инструмента
+Description[en_US]=default description of test 2 in example diagnostic tool
+
+[test3]
+Name=test3
+Name[ru_RU]=тест3 примера диагностического инструмента
+Name[en_US]=test3 of example diagnistic tool
+Description=default description of test 3 in example diagnostic tool
+Description[ru_RU]=описание теста 3 примера диагностического инструмента
+Description[en_US]=default description of test 3 in example diagnostic tool
