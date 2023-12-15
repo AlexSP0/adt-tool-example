@@ -11,12 +11,12 @@ thread_limit = 3
 action_id = Info
 
 [Run]
-execute = /usr/lib/adt-test-tools/adt-tool-example {param}
+execute = /usr/lib/adt-tool-example/adt-tool-example {param}
 stdout_signal_name = diag1_stdout_signal
 stderr_signal_name = diag1_stderr_signal
 action_id = Run
 
 [List]
-execute = /usr/lib/adt-test-tools/adt-tool-example -l
+execute = /usr/lib/adt-tool-example/adt-tool-example -l
 stdout_strings = enabled
 action_id = List
