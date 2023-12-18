@@ -38,12 +38,19 @@ test3() {
 	exit $?
 }
 
+list() {
+	echo "test1"
+	echo "test2"
+	echo "test3"
+	exit 0;
+}
+
 if [ "$#" -eq 1 ]
 then
   case "$1" in
     -h | --help) show_usage
     ;;
-    -l | --list) listcmd=1
+    -l | --list) list
     ;;
     -v | --version) print_version
     ;;
@@ -59,10 +66,4 @@ then
 else
 	show_usage
 	exit 1
-fi
-
-if ! test -z $listcmd; then
-    echo "test1"
-	echo "test2"
-	echo "test3"
 fi
