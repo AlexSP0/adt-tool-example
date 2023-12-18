@@ -12,7 +12,7 @@ show_usage() {
     echo ""
     echo "Options:"
     echo "  -h, --help      This message"
-    echo "  -V, --version      Display version number"
+    echo "  -v, --version      Display version number"
     echo "  -l, --list      List of tests"
     echo ""
     return
@@ -34,7 +34,7 @@ test2() {
 }
 
 test3() {
-	echo "Test 2:"
+	echo "Test 3:"
 	exit $?
 }
 
