@@ -176,12 +176,12 @@ action_id = List
 В поле <code>execute</code> заменим<code>adt-tool-example</code> на имя созданного ранее исполняемого файла. Остальные поля оставим как есть.
 
 
-## запаковываем в RPM пакет
+## Запаковываем в RPM пакет
 Для сборки получившегося диагностического инструмента в RPM пакета с помощью <code>rpmbuild</code> нам будет достаточно написать SPEC-файл. Но для сборки с помощью <code>gear</code> нам потребуется доустановить следующий набор программ:
 - git
 - gear
 
-### создание git-репозитория
+### Создание git-репозитория
 В каталоге проекта выполняем следующюю последовательность команд:
 <pre>
 test@test $ git init
@@ -191,7 +191,7 @@ test@test $ git add ./adt-example.backend
 test@test $ git commit -m "first commit"
 </pre>
 
-### делаем из git-репозитория gear-репозиторий
+### Делаем из git-репозитория gear-репозиторий
 Создадим в крене каталога файл <code>adt-tool-example.spec</code> (название файла заменить на свое, расширение .spec оставить). Добавим в него строку:
 <pre>
 %define _unpackaged_files_terminate_build 1
@@ -223,16 +223,17 @@ Example tool for ADT.
 - %name - имя программы, вместо него будет подставлено значение поля Name
 - %buildroot - будет подставлен путь к каталогу /usr/src/tmp/<имя программы>-buildroot. В этом каталоге будет дерево каталогов и файлов пакета.
 - %_libexecdir - каталог, в который попадет исполняемый файл. 
-- %_datadir - каталог для файлов, предназначенных только для чтения (в данном случае для .alterator и .backend)
+- %_datadir - каталог для файлов, предназначенных только для чтения (в данном случае для .alterator)
+- %_sysconfdir - каталог для конфигурационных файлов (в данном случае для файлов .backend)
 Тут нужно заменить только имена файлов adt-tool-example, adt-example.backend и adt-example.alterator на свои.
 <pre>
 %install
 mkdir -p %buildroot%_libexecdir/%name
-mkdir -p %buildroot%_datadir/alterator/backends
+mkdir -p %buildroot%_sysconfdir/alterator/backends
 mkdir -p %buildroot%_datadir/alterator/objects/%name
 
 install -v -p -m 755 -D adt-tool-example %buildroot%_libexecdir/%name
-install -v -p -m 644 -D adt-example.backend %buildroot%_datadir/alterator/backends
+install -v -p -m 644 -D adt-example.backend %buildroot%_sysconfdir/alterator/backends
 install -v -p -m 655 -D adt-example.alterator %buildroot%_datadir/alterator/objects/%name
 </pre>
 Командой mkdir мы создаем дерево каталогов пакета.
@@ -242,7 +243,7 @@ install -v -p -m 655 -D adt-example.alterator %buildroot%_datadir/alterator/obje
 <pre>
 %files
 %_libexecdir/%name/adt-tool-example
-%_datadir/alterator/backends/adt-example.backend
+%_sysconfdir/alterator/backends/adt-example.backend
 %_datadir/alterator/objects/%name/adt-example.alterator
 </pre>
 Если в пакете предполагаются какие либо файлы - необходимо аналогичным образом создать для них каталоги и поместить их туда. Важно: файлы, которые будут в составе пакета должны обязательно лежать внутри каталога %buildroot или одного из его подкаталогов.
@@ -272,7 +273,7 @@ test@test $ git add .gear/rules
 test@test $ gear-commit
 </pre>
 
-### собираем пакет
+### Собираем пакет
 Для сборки необходимо выполнить команду:
 <pre>
 test@test $ gear-hsh -v --no-sisyphus-check
