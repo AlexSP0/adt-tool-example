@@ -21,16 +21,16 @@ Example tool for ADT.
 
 %install
 mkdir -p %buildroot%_libexecdir/%name
-mkdir -p %buildroot%_datadir/alterator/backends
+mkdir -p %buildroot%_sysconfdir/alterator/backends
 mkdir -p %buildroot%_datadir/alterator/objects/%name
 
 install -v -p -m 755 -D adt-tool-example %buildroot%_libexecdir/%name
-install -v -p -m 644 -D adt-example.backend %buildroot%_datadir/alterator/backends
+install -v -p -m 644 -D adt-example.backend %buildroot%_sysconfdir/alterator/backends
 install -v -p -m 655 -D adt-example.alterator %buildroot%_datadir/alterator/objects/%name
 
 %files
 %_libexecdir/%name/adt-tool-example
-%_datadir/alterator/backends/adt-example.backend
+%_sysconfdir/alterator/backends/adt-example.backend
 %_datadir/alterator/objects/%name/adt-example.alterator
 
 %changelog
